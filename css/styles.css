@@ -381,4 +381,12 @@ h1, h2, h3, h4 {
   .product-grid { grid-template-columns: 1fr; }
   .blog-grid { grid-template-columns: 1fr; }
   .footer__inner { flex-direction: column; text-align: center; }
+  /* Blog detail sidebar stacks below on mobile */
+  section[style*="grid-template-columns:1fr 280px"] {
+    display: block !important;
+  }
+  section[style*="grid-template-columns:1fr 280px"] .sidebar-cta {
+    position: static !important;
+    margin-top: 32px;
+  }
 }
