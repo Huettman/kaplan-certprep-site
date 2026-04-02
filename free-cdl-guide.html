@@ -115,38 +115,15 @@
 <script src="js/main.js"></script>
 <script>
 function submitToGoogleForm(email) {
-  // Use a real HTML form POST targeting a hidden iframe.
-  // This is the ONLY method Google Forms accepts cross-origin.
-  // fetch() and sendBeacon() get 403'd, but standard form POSTs work.
-
-  var iframe = document.getElementById('gform-iframe');
-  if (!iframe) {
-    iframe = document.createElement('iframe');
-    iframe.id = 'gform-iframe';
-    iframe.name = 'gform-iframe';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-  }
-
-  var form = document.createElement('form');
-  form.method = 'POST';
-  form.action = 'https://docs.google.com/forms/d/e/1FAIpQLSd79nMvl2izs984iW0m_83cppE4-x-k2uaBhmF_pV2PIRnDRA/formResponse';
-  form.target = 'gform-iframe';
-  form.style.display = 'none';
-
-  var emailInput = document.createElement('input');
-  emailInput.type = 'hidden';
-  emailInput.name = 'entry.1345804228';
-  emailInput.value = email;
-  form.appendChild(emailInput);
-
-  document.body.appendChild(form);
-  form.submit();
-
-  // Clean up after a delay (form already submitted)
-  setTimeout(function() {
-    try { document.body.removeChild(form); } catch(e) {}
-  }, 3000);
+  // POST to Google Apps Script web app
+  fetch('https://script.google.com/macros/s/AKfycbzvRP0BUXno7bZ-3iYhAOBmxseqVXKOnifzM65yBF4bzpCmHkktLII-poB5UE2GWkzeQg/exec', {
+    method: 'POST',
+    body: JSON.stringify({ email: email }),
+    headers: { 'Content-Type': 'text/plain' }
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) { console.log('Submission result:', data); })
+  .catch(function(err) { console.log('Submission sent (no-cors fallback)'); });
 }
 
 function submitGuideForm() {
@@ -163,15 +140,13 @@ function submitGuideForm() {
   btn.textContent = 'Sending...';
   btn.disabled = true;
 
-  // Submit via real form POST
   submitToGoogleForm(email);
 
-  // Show success after a short delay to allow form POST to complete
   setTimeout(function() {
     document.getElementById('guide-form-card').style.display = 'none';
     document.getElementById('guide-success').style.display = 'block';
     document.getElementById('guide-confirm-email').innerHTML = 'We have also sent a copy to <strong>' + email + '</strong>';
-  }, 2500);
+  }, 2000);
 }
 
 function submitGuideFormBottom() {
