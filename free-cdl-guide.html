@@ -115,38 +115,38 @@
 <script src="js/main.js"></script>
 <script>
 function submitToGoogleForm(email) {
-  // Method 1: fetch with no-cors (fire and forget - most reliable for modern browsers)
-  try {
-    var formData = new FormData();
-    formData.append('entry.1345804228', email);
-    navigator.sendBeacon(
-      'https://docs.google.com/forms/d/e/1FAIpQLSd79nMvl2izs984iW0m_83cppE4-x-k2uaBhmF_pV2PIRnDRA/formResponse',
-      formData
-    );
-  } catch(e) {
-    console.log('sendBeacon failed, trying fetch');
+  // Use a real HTML form POST targeting a hidden iframe.
+  // This is the ONLY method Google Forms accepts cross-origin.
+  // fetch() and sendBeacon() get 403'd, but standard form POSTs work.
+
+  var iframe = document.getElementById('gform-iframe');
+  if (!iframe) {
+    iframe = document.createElement('iframe');
+    iframe.id = 'gform-iframe';
+    iframe.name = 'gform-iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
   }
 
-  // Method 2: fetch as backup
-  try {
-    var urlParams = new URLSearchParams();
-    urlParams.append('entry.1345804228', email);
-    fetch('https://docs.google.com/forms/d/e/1FAIpQLSd79nMvl2izs984iW0m_83cppE4-x-k2uaBhmF_pV2PIRnDRA/formResponse', {
-      method: 'POST',
-      body: urlParams,
-      mode: 'no-cors'
-    });
-  } catch(e) {
-    console.log('fetch failed');
-  }
+  var form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'https://docs.google.com/forms/d/e/1FAIpQLSd79nMvl2izs984iW0m_83cppE4-x-k2uaBhmF_pV2PIRnDRA/formResponse';
+  form.target = 'gform-iframe';
+  form.style.display = 'none';
 
-  // Method 3: image pixel GET as final fallback
-  try {
-    var img = new Image();
-    img.src = 'https://docs.google.com/forms/d/e/1FAIpQLSd79nMvl2izs984iW0m_83cppE4-x-k2uaBhmF_pV2PIRnDRA/formResponse?entry.1345804228=' + encodeURIComponent(email) + '&submit=Submit&_=' + Date.now();
-  } catch(e) {
-    console.log('image pixel failed');
-  }
+  var emailInput = document.createElement('input');
+  emailInput.type = 'hidden';
+  emailInput.name = 'entry.1345804228';
+  emailInput.value = email;
+  form.appendChild(emailInput);
+
+  document.body.appendChild(form);
+  form.submit();
+
+  // Clean up after a delay (form already submitted)
+  setTimeout(function() {
+    try { document.body.removeChild(form); } catch(e) {}
+  }, 3000);
 }
 
 function submitGuideForm() {
@@ -159,20 +159,19 @@ function submitGuideForm() {
   }
   errorEl.style.display = 'none';
 
-  // Disable button
   var btn = document.getElementById('guide-submit-btn');
   btn.textContent = 'Sending...';
   btn.disabled = true;
 
-  // Fire all three submission methods
+  // Submit via real form POST
   submitToGoogleForm(email);
 
-  // Show success after delay
+  // Show success after a short delay to allow form POST to complete
   setTimeout(function() {
     document.getElementById('guide-form-card').style.display = 'none';
     document.getElementById('guide-success').style.display = 'block';
     document.getElementById('guide-confirm-email').innerHTML = 'We have also sent a copy to <strong>' + email + '</strong>';
-  }, 2000);
+  }, 2500);
 }
 
 function submitGuideFormBottom() {
