@@ -11,6 +11,7 @@
 <ul class="nav__links"><li><a href="index.html">Home</a></li><li><a href="certification-prep-center.html">Certification Prep Center</a></li><li><a href="blog/index.html">Blog</a></li><li><a href="contact.html">Contact Us</a></li></ul>
 <button class="nav__mobile" aria-label="Menu">☰</button></div></nav>
 
+<!-- Hero -->
 <section style="padding:120px 24px 80px;background:linear-gradient(135deg,#240F6E 0%,#503F8B 100%);position:relative;overflow:hidden">
   <div style="position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.03)"></div>
   <div style="position:absolute;bottom:-60px;left:-60px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.02)"></div>
@@ -32,6 +33,7 @@
         <div style="display:flex;align-items:center;gap:8px"><span style="color:#FFC82E">✓</span><span style="font-size:14px;color:rgba(255,255,255,.7)">Leak rate limits & stopping distance</span></div>
       </div>
     </div>
+    <!-- Form card -->
     <div id="guide-form-card" style="background:#fff;border-radius:20px;padding:32px 28px;box-shadow:0 20px 60px rgba(0,0,0,.2)">
       <div style="text-align:center;margin-bottom:20px">
         <div style="font-size:36px;margin-bottom:8px">🔧</div>
@@ -42,10 +44,10 @@
         <input type="email" id="guide-email" placeholder="you@example.com" style="width:100%;background:#EFEFEF;border:1.5px solid #D9D9D9;border-radius:10px;padding:14px 18px;font-size:15px;color:#212121;outline:none;box-sizing:border-box;font-family:var(--font-body)">
         <p id="guide-error" style="font-size:12px;color:#D6083B;margin:6px 0 0;display:none"></p>
       </div>
-      <button onclick="submitGuideForm()" class="btn btn--primary" style="width:100%;display:flex;justify-content:center;padding:14px 28px;cursor:pointer">Get My Free Guide →</button>
+      <button id="guide-submit-btn" onclick="submitGuideForm()" class="btn btn--primary" style="width:100%;display:flex;justify-content:center;padding:14px 28px;cursor:pointer">Get My Free Guide →</button>
       <p style="font-size:11px;color:#A0A0A0;text-align:center;margin:12px 0 0;line-height:1.4">No spam. Unsubscribe anytime.</p>
     </div>
-    <!-- Success state (hidden by default) -->
+    <!-- Success state -->
     <div id="guide-success" style="display:none;background:#fff;border-radius:20px;padding:48px 36px;box-shadow:0 20px 60px rgba(0,0,0,.2);text-align:center">
       <div style="font-size:56px;margin-bottom:16px">🎉</div>
       <h2 style="font-size:26px;font-weight:300;color:#212121;margin:0 0 12px;font-family:var(--font-heading)">Your Guide is <strong style="color:#240F6E">Ready!</strong></h2>
@@ -53,7 +55,7 @@
       <a href="downloads/cdl_air_brake_quick_reference.pdf" download class="btn btn--primary" style="width:100%;display:flex;justify-content:center;margin-bottom:16px;text-decoration:none">⬇ Download PDF Guide</a>
       <p id="guide-confirm-email" style="font-size:12px;color:#A0A0A0;margin:16px 0 0"></p>
       <div style="margin-top:20px">
-        <a href="product/cdl-airbrakes.html" class="btn btn--ghost" style="border-color:#A79FC5;color:#240F6E;text-decoration:none">Explore CDL Air Brakes Qbank →</a>
+        <a href="product/cdl-airbrakes.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:10px;border:2px solid #A79FC5;color:#240F6E;font-size:14px;font-weight:700;text-decoration:none">Explore CDL Air Brakes Qbank →</a>
       </div>
     </div>
   </div>
@@ -66,30 +68,12 @@
     <h2 style="font-size:clamp(22px,3.5vw,32px);font-weight:300;color:#212121;text-align:center;margin:0 0 8px;font-family:var(--font-heading)">What's Inside <strong style="color:#240F6E">the Guide</strong></h2>
     <p style="font-size:15px;color:#4A4A4A;text-align:center;margin:0 0 40px">Every number, threshold, and checklist from the FMCSA CDL Manual — all on one page.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px">
-      <div style="background:#fff;border:1px solid #D9D9D9;border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start">
-        <div style="font-size:24px;flex-shrink:0;margin-top:2px">📊</div>
-        <div><div style="font-size:15px;font-weight:700;color:#212121;margin:0 0 4px;font-family:var(--font-heading)">System Operating Range</div><p style="font-size:13px;color:#4A4A4A;line-height:1.5;margin:0">Governor cut-out, cut-in, safety valve, and minimum pressure before driving</p></div>
-      </div>
-      <div style="background:#fff;border:1px solid #D9D9D9;border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start">
-        <div style="font-size:24px;flex-shrink:0;margin-top:2px">⚠️</div>
-        <div><div style="font-size:15px;font-weight:700;color:#212121;margin:0 0 4px;font-family:var(--font-heading)">Warning & Emergency Thresholds</div><p style="font-size:13px;color:#4A4A4A;line-height:1.5;margin:0">Low-pressure warning at 60 psi, spring brake engagement at 20–45 psi</p></div>
-      </div>
-      <div style="background:#fff;border:1px solid #D9D9D9;border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start">
-        <div style="font-size:24px;flex-shrink:0;margin-top:2px">🛑</div>
-        <div><div style="font-size:15px;font-weight:700;color:#212121;margin:0 0 4px;font-family:var(--font-heading)">Stopping Distance</div><p style="font-size:13px;color:#4A4A4A;line-height:1.5;margin:0">Brake lag, perception, reaction, and total stopping distance at 55 mph</p></div>
-      </div>
-      <div style="background:#fff;border:1px solid #D9D9D9;border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start">
-        <div style="font-size:24px;flex-shrink:0;margin-top:2px">🔍</div>
-        <div><div style="font-size:15px;font-weight:700;color:#212121;margin:0 0 4px;font-family:var(--font-heading)">Air Leak Rate Limits</div><p style="font-size:13px;color:#4A4A4A;line-height:1.5;margin:0">Static and applied leak test maximums for single and combination vehicles</p></div>
-      </div>
-      <div style="background:#fff;border:1px solid #D9D9D9;border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start">
-        <div style="font-size:24px;flex-shrink:0;margin-top:2px">📋</div>
-        <div><div style="font-size:15px;font-weight:700;color:#212121;margin:0 0 4px;font-family:var(--font-heading)">In-Cab Check Sequence</div><p style="font-size:13px;color:#4A4A4A;line-height:1.5;margin:0">Complete 9-step air brake check with exact PSI values for your skills test</p></div>
-      </div>
-      <div style="background:#fff;border:1px solid #D9D9D9;border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start">
-        <div style="font-size:24px;flex-shrink:0;margin-top:2px">⚙️</div>
-        <div><div style="font-size:15px;font-weight:700;color:#212121;margin:0 0 4px;font-family:var(--font-heading)">Key Concepts</div><p style="font-size:13px;color:#4A4A4A;line-height:1.5;margin:0">Three braking systems, parking brake knob, S-cam brakes, and air tank draining</p></div>
-      </div>
+      <div style="background:#fff;border:1px solid #D9D9D9;border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start"><div style="font-size:24px;flex-shrink:0;margin-top:2px">📊</div><div><div style="font-size:15px;font-weight:700;color:#212121;margin:0 0 4px;font-family:var(--font-heading)">System Operating Range</div><p style="font-size:13px;color:#4A4A4A;line-height:1.5;margin:0">Governor cut-out, cut-in, safety valve, and minimum pressure before driving</p></div></div>
+      <div style="background:#fff;border:1px solid #D9D9D9;border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start"><div style="font-size:24px;flex-shrink:0;margin-top:2px">⚠️</div><div><div style="font-size:15px;font-weight:700;color:#212121;margin:0 0 4px;font-family:var(--font-heading)">Warning & Emergency Thresholds</div><p style="font-size:13px;color:#4A4A4A;line-height:1.5;margin:0">Low-pressure warning at 60 psi, spring brake engagement at 20–45 psi</p></div></div>
+      <div style="background:#fff;border:1px solid #D9D9D9;border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start"><div style="font-size:24px;flex-shrink:0;margin-top:2px">🛑</div><div><div style="font-size:15px;font-weight:700;color:#212121;margin:0 0 4px;font-family:var(--font-heading)">Stopping Distance</div><p style="font-size:13px;color:#4A4A4A;line-height:1.5;margin:0">Brake lag, perception, reaction, and total stopping distance at 55 mph</p></div></div>
+      <div style="background:#fff;border:1px solid #D9D9D9;border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start"><div style="font-size:24px;flex-shrink:0;margin-top:2px">🔍</div><div><div style="font-size:15px;font-weight:700;color:#212121;margin:0 0 4px;font-family:var(--font-heading)">Air Leak Rate Limits</div><p style="font-size:13px;color:#4A4A4A;line-height:1.5;margin:0">Static and applied leak test maximums for single and combination vehicles</p></div></div>
+      <div style="background:#fff;border:1px solid #D9D9D9;border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start"><div style="font-size:24px;flex-shrink:0;margin-top:2px">📋</div><div><div style="font-size:15px;font-weight:700;color:#212121;margin:0 0 4px;font-family:var(--font-heading)">In-Cab Check Sequence</div><p style="font-size:13px;color:#4A4A4A;line-height:1.5;margin:0">Complete 9-step air brake check with exact PSI values for your skills test</p></div></div>
+      <div style="background:#fff;border:1px solid #D9D9D9;border-radius:14px;padding:22px 20px;display:flex;gap:14px;align-items:flex-start"><div style="font-size:24px;flex-shrink:0;margin-top:2px">⚙️</div><div><div style="font-size:15px;font-weight:700;color:#212121;margin:0 0 4px;font-family:var(--font-heading)">Key Concepts</div><p style="font-size:13px;color:#4A4A4A;line-height:1.5;margin:0">Three braking systems, parking brake knob, S-cam brakes, and air tank draining</p></div></div>
     </div>
   </div>
 </section>
@@ -118,55 +102,6 @@
   </div>
 </section>
 
-<script>
-function submitGuideForm() {
-  var email = document.getElementById("guide-email").value.trim();
-  var errorEl = document.getElementById("guide-error");
-  if (!email || !/\S+@\S+\.\S+/.test(email)) {
-    errorEl.textContent = "Please enter a valid email address";
-    errorEl.style.display = "block";
-    return;
-  }
-  errorEl.style.display = "none";
-  // Submit to Google Forms via hidden iframe
-  var iframeName = "gform_iframe_" + Date.now();
-  var iframe = document.createElement("iframe");
-  iframe.name = iframeName;
-  iframe.style.display = "none";
-  document.body.appendChild(iframe);
-  var form = document.createElement("form");
-  form.method = "POST";
-  form.action = "https://docs.google.com/forms/d/e/1FAIpQLSd79nMvl2izs984iW0m_83cppE4-x-k2uaBhmF_pV2PIRnDRA/formResponse";
-  form.target = iframeName;
-  var input = document.createElement("input");
-  input.type = "hidden";
-  input.name = "entry.1345804228";
-  input.value = email;
-  form.appendChild(input);
-  document.body.appendChild(form);
-  form.submit();
-  setTimeout(function() {
-    try { document.body.removeChild(form); document.body.removeChild(iframe); } catch(e) {}
-    document.getElementById("guide-form-card").style.display = "none";
-    document.getElementById("guide-success").style.display = "block";
-    document.getElementById("guide-confirm-email").innerHTML = "We\'ve also sent a copy to <strong>" + email + "</strong>";
-  }, 1500);
-}
-function submitGuideFormBottom() {
-  var email = document.getElementById("guide-email-bottom").value.trim();
-  var errorEl = document.getElementById("guide-error-bottom");
-  if (!email || !/\S+@\S+\.\S+/.test(email)) {
-    errorEl.textContent = "Please enter a valid email address";
-    errorEl.style.display = "block";
-    return;
-  }
-  errorEl.style.display = "none";
-  document.getElementById("guide-email").value = email;
-  submitGuideForm();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-</script>
-
 <footer class="footer"><div class="footer__inner">
 <div class="footer__logo"><img src="images/logo-white.png" alt="Kaplan CertPrep"></div>
 <div class="footer__links">
@@ -176,5 +111,57 @@ function submitGuideFormBottom() {
 <a href="contact.html">Contact</a></div></div>
 <p class="footer__disclaimer">Kaplan's CertPrep products are designed to help prepare for certification exams. CertPrep does not grant certification or licensure. Licensure requirements vary by state and profession.</p>
 <p class="footer__copyright">&copy; Copyright Kaplan North America, LLC. All Rights Reserved.</p></footer>
+
 <script src="js/main.js"></script>
-</body></html>
+<script>
+function submitToGoogleForm(email) {
+  // POST to Google Apps Script web app
+  fetch('https://script.google.com/macros/s/AKfycbzvRP0BUXno7bZ-3iYhAOBmxseqVXKOnifzM65yBF4bzpCmHkktLII-poB5UE2GWkzeQg/exec', {
+    method: 'POST',
+    body: JSON.stringify({ email: email }),
+    headers: { 'Content-Type': 'text/plain' }
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) { console.log('Submission result:', data); })
+  .catch(function(err) { console.log('Submission sent (no-cors fallback)'); });
+}
+
+function submitGuideForm() {
+  var email = document.getElementById('guide-email').value.trim();
+  var errorEl = document.getElementById('guide-error');
+  if (!email || !/\S+@\S+\.\S+/.test(email)) {
+    errorEl.textContent = 'Please enter a valid email address';
+    errorEl.style.display = 'block';
+    return;
+  }
+  errorEl.style.display = 'none';
+
+  var btn = document.getElementById('guide-submit-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  submitToGoogleForm(email);
+
+  setTimeout(function() {
+    document.getElementById('guide-form-card').style.display = 'none';
+    document.getElementById('guide-success').style.display = 'block';
+    document.getElementById('guide-confirm-email').innerHTML = 'We have also sent a copy to <strong>' + email + '</strong>';
+  }, 2000);
+}
+
+function submitGuideFormBottom() {
+  var email = document.getElementById('guide-email-bottom').value.trim();
+  var errorEl = document.getElementById('guide-error-bottom');
+  if (!email || !/\S+@\S+\.\S+/.test(email)) {
+    errorEl.textContent = 'Please enter a valid email address';
+    errorEl.style.display = 'block';
+    return;
+  }
+  errorEl.style.display = 'none';
+  document.getElementById('guide-email').value = email;
+  submitGuideForm();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
